@@ -8,7 +8,7 @@ resource "aws_instance" "my_Ubuntu" {
   count         = 3
   ami           = "ami-08962a4068733a2b6"
   instance_type = "t3.micro"
-  tegs = {
+  tags = {
     name = "My Ubuntu Server"
     Owner = "Aynur Garipov"
     Project = "terraform learn"
