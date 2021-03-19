@@ -1,6 +1,6 @@
 provider "aws" {
   access_key = "AKIAUOABTBSCSUJSRPWJ"
-  secret_key = "qMJt6f38BtA$z5T844swY2zWAygtmFe0fp+uylEzbU9rtU7R"
+  secret_key = "qMJ6f38BtA$tz5T844swY2zWAygtmFe0fp+uylEzbU9rtU7R"
   region     = "us-east-2"
 }
 
@@ -17,13 +17,13 @@ echo "Privet" > /var/www/html/index.html
 sudo systemctl start nginx
 EOF
 
-  tags {
+  tags = {
     owner = "Garipov Aynur"
     Name  = "MyFirst_webSite_terraform"
   }
 }
 
-resource "aws_security_group" "my_webserver." {
+resource "aws_security_group" "my_webserver" {
   description = "Garipov Aynur"
   name        = "MyFirst_webSite_terraform"
 
