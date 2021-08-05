@@ -1,10 +1,3 @@
-#----------------------------------------------------------
-# My Terraform
-#
-# Build WebServer during Bootstrap
-#
-# Made by Denis Astahov
-#----------------------------------------------------------
 
 
 provider "aws" {
@@ -12,8 +5,8 @@ provider "aws" {
 }
 
 
-resource "aws_eip" "my_static_ip" {
-  instance = aws_instance.my_webserver.id
+resource "aws_eip" "my_static_ip" {       # Создать elastic_ip
+  instance = aws_instance.my_webserver.id # Привязать elastic_ip к my_webserver
   tags = {
     Name  = "Web Server IP"
     Owner = "Denis Astahov"
@@ -37,7 +30,9 @@ resource "aws_instance" "my_webserver" {
   }
 
   lifecycle {
-    create_before_destroy = true
+    ###prevent_destroy = true #### Не дает удалить Terraform destroy
+    #ignore_changes = ["ami", "user_data"] ### Не изменяется , если мы изменим манифест данные поля не будут изменены.
+    create_before_destroy = true # Сначала поднимается первый сервер, потом после привязки elastic_ip (см."aws_eip" "my_static_ip" ), переходит ко второму серверу, удаляется первый серврер.
   }
 
 }
