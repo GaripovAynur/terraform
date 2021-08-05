@@ -1,16 +1,8 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-}
+
 
 provider "aws" {
-  region                  = "eu-west-1"
-  shared_credentials_file = "./keys/aws/key"
-  profile                 = "default"  
+  region  = "us-east-2"
+  profile = "default"
 }
 
 resource "aws_key_pair" "alice" {
@@ -23,17 +15,17 @@ data "aws_vpc" "default" {
 }
 
 resource "aws_instance" "alice" {
-  key_name      = aws_key_pair.alice.key_name
-  
-  ami           = "ami-0aef57767f5404a3c"
+  key_name = aws_key_pair.alice.key_name
+
+  ami           = "ami-00399ec92321828f5"
   instance_type = "t2.micro"
 
-  vpc_security_group_ids = [ aws_security_group.allow_ingress.id, aws_security_group.allow_egress.id ]
+  vpc_security_group_ids = [aws_security_group.allow_ingress.id, aws_security_group.allow_egress.id]
 }
 
 resource "aws_security_group" "allow_ingress" {
-  vpc_id      = data.aws_vpc.default.id
-  
+  vpc_id = data.aws_vpc.default.id
+
   name        = "allow_ingress"
   description = "Allow ingress"
 
@@ -47,7 +39,7 @@ resource "aws_security_group" "allow_ingress" {
 }
 
 resource "aws_security_group" "allow_egress" {
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id = data.aws_vpc.default.id
 
   name        = "allow_egress"
   description = "Allow egress"
@@ -66,8 +58,8 @@ resource "aws_eip" "ip" {
 }
 
 data "template_file" "inventory" {
-  template = file("./terraform/_templates/inventory.tpl")
-  
+  template = file("./_templates/inventory.tpl")
+
   vars = {
     user = "ubuntu"
     host = join("", ["alice ansible_host=", aws_eip.ip.public_ip])

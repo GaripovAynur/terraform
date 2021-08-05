@@ -1,10 +1,3 @@
-#----------------------------------------------------------
-# My Terraform
-#
-# Build WebServer during Bootstrap
-#
-# Made by Denis Astahov
-#----------------------------------------------------------
 
 
 provider "aws" {

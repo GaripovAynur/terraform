@@ -1,1 +1,5 @@
 test/
+*.hcl
+*.tfstate
+*.tfstate.*
+.terraform
