@@ -2,7 +2,7 @@ terraform init  #Скачает дополнительный файл котор
 terraform plan  #Пройдется по всей директории, посмотрит что необходимо создать и это покажет
 terraform apply #Создат то что указали в файлах
 terraform destroy #Удалить все инсстансы что описано *.tf
-terraform destroy # Показывает развернутом виде применяемых значений.
+terraform show # Показывает развернутом виде применяемых значений.
 
 terraform console
 > templatefile("user_data.sh.tpl", { f_name = "Denis", l_name = "Astahov",  names  = ["Vasya", "Kolya", "Petya", "John", "Donald", "Masha"] }) # Для проверки без деплоя, показывает что будет делать данная команда.
