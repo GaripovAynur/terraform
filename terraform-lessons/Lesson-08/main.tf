@@ -1,9 +1,3 @@
-#----------------------------------------------------------
-# My Terraform
-#
-# Made by Denis Astahov
-#----------------------------------------------------------
-
 provider "aws" {
   region = "eu-central-1"
 }
@@ -16,7 +10,7 @@ resource "aws_instance" "my_server_web" {
   tags = {
     Name = "Server-Web"
   }
-  depends_on = [aws_instance.my_server_db, aws_instance.my_server_app]
+  depends_on = [aws_instance.my_server_db, aws_instance.my_server_app] # Описывает зависисмотси при запуске ec2, инсстанс my_server_web не запустится пока не будут запущены my_server_db и my_server_app
 }
 
 resource "aws_instance" "my_server_app" {
