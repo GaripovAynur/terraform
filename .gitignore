@@ -3,3 +3,5 @@ test/
 *.tfstate
 *.tfstate.*
 .terraform
+id_rsa
+ssh/
