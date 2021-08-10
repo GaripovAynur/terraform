@@ -1,4 +1,8 @@
-provider "aws" {}
+#### https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
+
+provider "aws" {
+  region = "ca-central-1"
+}
 
 
 data "aws_availability_zones" "working" {}
