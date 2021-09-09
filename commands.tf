@@ -4,6 +4,8 @@ terraform apply #Создат то что указали в файлах
 terraform destroy #Удалить все инсстансы что описано *.tf
 terraform show # Показывает развернутом виде применяемых значений.
 
+terraform apply -var-file="testing.tfvars" # Запуск с переменнаит из файла Lesson 13
+
 terraform console
 > templatefile("user_data.sh.tpl", { f_name = "Denis", l_name = "Astahov",  names  = ["Vasya", "Kolya", "Petya", "John", "Donald", "Masha"] }) # Для проверки без деплоя, показывает что будет делать данная команда.
 
@@ -24,5 +26,3 @@ resource "aws_instance" "alice" {
   ami           = "ami-03a71cec707bfc3d7"
   instance_type = "t3.micro"
 }
-
-
